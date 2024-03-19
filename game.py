@@ -18,30 +18,28 @@ failures=0
 print("1. Facil")
 print("2. Media")
 print("3. Dificil")
-option = input("Seleccione una dificultad: ")
+option = int(input("Seleccione una dificultad: "))
 
 letters = []
-if option == "1":
-    for letter in secret_word:
-        if letter in ['a', 'e', 'i', 'o', 'u','ó']:
-            letters.append(letter)
-            guessed_letters.append(letter)
-        else:
-            letters.append("_")
-    word_displayed = "".join(letters)
-elif option == "2":
-    for cont in range(len(secret_word)):
-        if cont==0:
-            letters.append(secret_word[0])
-            guessed_letters.append(secret_word[0])
-        elif cont == len(secret_word)-1:
-            letters.append(secret_word[len(secret_word)-1])
-            guessed_letters.append(secret_word[len(secret_word)-1])
-        else:
-            letters.append("_")
-    word_displayed = "".join(letters)
-elif option == "3":
-    word_displayed = "_" * len(secret_word)
+match option:
+    case 1:
+        for letter in secret_word:
+            if letter in ['a', 'e', 'i', 'o', 'u','ó']:
+                letters.append(letter)
+                guessed_letters.append(letter)
+            else:
+                letters.append("_")
+        word_displayed = "".join(letters)
+    case 2:
+        for cont in range(len(secret_word)):
+            if cont==0 or cont == len(secret_word)-1:
+                letters.append(secret_word[cont])
+                guessed_letters.append(secret_word[cont])
+            else:
+                letters.append("_")
+        word_displayed = "".join(letters)
+    case 3:
+        word_displayed = "_" * len(secret_word)
 
 # Mostrarla palabra parcialmente adivinada
 print(f"Palabra: {word_displayed}")
