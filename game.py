@@ -57,12 +57,20 @@ while failures != max_failures:
     # Agregar la letra a la lista de letras adivinadas
     guessed_letters.append(letter)
     # Verificar si la letra está en la palabra secreta
-    if letter in secret_word:
-        print("¡Bien hecho! La letra está en la palabra.")
+    if option == 2:
+        if letter in secret_word[1:-1]:
+            print("¡Bien hecho! La letra está en la palabra.")
+        else:
+            print("Lo siento, la letra no está en la palabra.")
+            # Sumo uno a la cantidad de fallos (no tomo el caracter vacio como fallo)
+            failures+=1  
     else:
-        print("Lo siento, la letra no está en la palabra.")
-        # Sumo uno a la cantidad de fallos (no tomo el caracter vacio como fallo)
-        failures+=1
+        if letter in secret_word:
+            print("¡Bien hecho! La letra está en la palabra.")
+        else:
+            print("Lo siento, la letra no está en la palabra.")
+            # Sumo uno a la cantidad de fallos (no tomo el caracter vacio como fallo)
+            failures+=1
     # Mostrar la palabra parcialmente adivinada
     letters = []
     cont = 0
