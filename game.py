@@ -32,9 +32,8 @@ match option:
         word_displayed = "".join(letters)
     case 2:
         for cont in range(len(secret_word)):
-            if cont==0 or cont == len(secret_word)-1:
+            if cont == 0 or cont == len(secret_word)-1:
                 letters.append(secret_word[cont])
-                guessed_letters.append(secret_word[cont])
             else:
                 letters.append("_")
         word_displayed = "".join(letters)
@@ -66,11 +65,13 @@ while failures != max_failures:
         failures+=1
     # Mostrar la palabra parcialmente adivinada
     letters = []
+    cont = 0
     for letter in secret_word:
-        if letter in guessed_letters:
+        if (letter in guessed_letters) or ((option == 2) and ((cont == 0) or (cont == len(secret_word)-1))):
             letters.append(letter)
         else:
             letters.append("_")
+        cont += 1
     word_displayed = "".join(letters)
     print(f"Palabra: {word_displayed}")
     # Verificar si se ha adivinado la palabra completa
